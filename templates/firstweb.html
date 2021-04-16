@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mel's Website</title>
+        <meta charset="utf-8">
+        <meta name="description" content="This field contains information about web page">
+        <meta name="author" content = "Melissa">
+        <link rel="stylesheet" type="text/css" href="../static/css/style.css">                                   
+    </head>
+
+    <body>
+      <div class="wrapper">
+
+        <div id ="parentDiv" class="left">
+          <img class="profile-picture" src="../static/css/pic.png" width="200" />
+          <h1 id = "target" onClick="newStyle()" class="name"> Melissa Meng </h1>
+          <h4 class="subtitle"> CFM student </h4>
+        </div>
+
+        <div class="right" id="div2">
+          <p class="bio"> 
+                Computing and Financial Management student, web project. Thanks for visiting my website.
+          </p>
+          <ul class="social-links" id="list">
+
+            {% for key, url in links.items() %}
+
+                <li><a href={{url}}>{{key}}</a></li>
+                <br>
+
+            {% endfor %}
+
+          </ul>
+          <p id="showMore" onClick="showMoreFunc()">click to see more...</p>
+
+          <form method="post">
+            <input class="button" type="submit" value="Download Resume"/>
+          </form>
+        </div>
+      </div>
+
+      <script>
+        let pElement = document.getElementById("target");
+        pElement.onclick = newStyle
+        
+        function newStyle() {
+            console.log("in function newStyle")
+            let newColor ='';
+            let newFont = '';
+            var element = document.getElementById('target');
+            element.style.color = "purple";
+            element.style.fontFamily = "Impact";
+        }
+        function showMoreFunc() {
+            let excel = document.createElement("li");
+            excel.innerHTML = "<a href ='https://excelfind.com/downloads/?action=ga'>Excel</a>"
+
+            let algebra = document.createElement("li");
+            algebra.innerHTML = "<a href= 'https://www.3blue1brown.com/essence-of-linear-algebra-page'>Algebra</a>";
+
+            let newline = document.createElement("br");
+
+            document.getElementById("list").appendChild(excel);
+            document.getElementById("list").appendChild(newline);
+            document.getElementById("list").appendChild(algebra);
+
+            let text = document.getElementById("showMore")
+            document.getElementById("div2").removeChild(text);
+        }
+    </script>
+    </body>
+</html>
